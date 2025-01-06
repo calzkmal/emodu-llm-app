@@ -1,0 +1,6 @@
+chatbot/
+keys/
+.dockerignore
+.env
+docker-compose.yaml
+Dockerfile
