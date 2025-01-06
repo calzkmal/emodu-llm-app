@@ -14,10 +14,10 @@ class LLMRequest(BaseModel):
 list_emosi = {'sad', 'angry', 'disgust', 'fear'}
 
 # List of supported reinforcements
-list_penguatan = {'attention', 'relevance', 'confidence', 'satisfaction'}
+list_penguatan = {'positive', 'negative'}
 
 # List of supported arcs_model
-list_pendekatan = {'positive', 'negative'}
+list_pendekatan = {'attention', 'relevance', 'confidence', 'satisfaction'}
 
 @app.post("/emodu-llm")
 async def llm_response(request: LLMRequest):
@@ -41,7 +41,7 @@ async def llm_response(request: LLMRequest):
         if request.pendekatan.lower() not in list_pendekatan:
             raise HTTPException(
                 status_code=400,
-                detail=f"Invalid approach '{request.pendekatan}'. Supported approaches are: {', '.join(list_pendekatan)}"
+                detail=f"Invalid ARCS Model '{request.pendekatan}'. Supported ARCS Model are: {', '.join(list_pendekatan)}"
             )
 
         # Call the handler function
